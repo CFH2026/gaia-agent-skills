@@ -18,6 +18,8 @@ metadata:
 ---
 ## Execution Steps
 
-1. **Fetch Instruction** — Load INSTRUCTION.md from GitHub
-2. **Load to Memory** — Parse instructions into agent context
-3. **Execute** — Run 5-step personality assessment workflow
+1. **Fetch Policies & Instructions** — Load policies from QUICK_REFERENCE.md and INSTRUCTION.md from GitHub
+2. **Load to Memory** — Parse policies and instructions into agent context
+3. **Validate Policies** — Verify skill compliance with all policies before execution
+4. **Apply Policies** — Enforce policy constraints throughout entire skill execution
+5. **Execute** — Run 5-step personality assessment workflow with continuous policy validation
