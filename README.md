@@ -35,18 +35,24 @@ This will:
 
 Currently supported:
 - ✅ **Claude Code** — Use `/personality-analyzer` to invoke
-- ⏳ **Codex** — Support coming soon
+- ✅ **Codex** — Supported with full network access enabled
 
 ### Running a Skill
 
-Once installed, invoke the skill through Claude Code:
+Once installed, invoke the skill through your agent:
 
+**Claude Code:**
 ```bash
 /personality-analyzer
 ```
 
+**Codex:**
+```bash
+invoke personality-analyzer
+```
+
 The skill will:
-1. Fetch the INSTRUCTION.md from GitHub
+1. Fetch the INSTRUCTION.md from GitHub (requires internet access)
 2. Load instructions and policies into memory
 3. Validate policy compliance
 4. Execute the skill workflow
