@@ -28,6 +28,67 @@ invoke personality-analyzer
 /personality-analyzer
 ```
 
+## Testing
+
+### Quick Test
+
+After installation, test the skill immediately:
+
+```bash
+# Invoke the skill
+npx agent-skills-cli run personality-analyzer
+
+# Or through your agent
+invoke personality-analyzer
+```
+
+### Full Assessment Test
+
+1. Start the skill
+2. Answer "yes" when prompted
+3. Answer each of the 5 questions with A, B, or C
+4. Verify the results show:
+   - ✅ Your 4-letter personality type (e.g., ENFP)
+   - ✅ Type description
+   - ✅ MBTI reference link
+
+### Manual Testing Checklist
+
+- [ ] Skill installs without errors
+- [ ] Skill invokes successfully
+- [ ] Introduction displays correctly
+- [ ] All 5 questions are asked
+- [ ] Questions accept A/B/C responses
+- [ ] Responses are scored correctly
+- [ ] Personality type is calculated
+- [ ] Results display with description
+- [ ] No personal data is requested
+- [ ] No errors during assessment
+- [ ] Results can be viewed but not saved/shared
+
+### Test Responses Example
+
+To get a specific personality type result:
+- **ENFP:** Q1=A, Q2=B, Q3=B, Q4=A, Q5=B
+- **ISTJ:** Q1=B, Q2=A, Q3=A, Q4=A, Q5=A
+- **INTJ:** Q1=B, Q2=B, Q3=A, Q4=A, Q5=A
+
+### Verify Policy Compliance
+
+Test that policies are enforced:
+
+```bash
+# The skill should:
+✅ Fetch policies from GitHub
+✅ Load policies before execution
+✅ Enforce all policy constraints
+✅ Not collect personal information
+✅ Not send results anywhere
+✅ Keep data session-local
+```
+
+Try requesting personal data (name, email, etc.) during the assessment. The skill should politely decline and redirect to the personality questions.
+
 ## What This Skill Does
 
 - Asks 5 MBTI personality questions
