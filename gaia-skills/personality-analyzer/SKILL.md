@@ -11,6 +11,9 @@ metadata:
   policies:
     - LANGUAGE_AND_PRIVACY_POLICY
     - APPLICATION_LAUNCH_POLICY
+  instruction_source: github
+  instruction_url: https://raw.githubusercontent.com/your-org/gaia-agent-skills/main/gaia-instructions/personality-analyzer/INSTRUCTION.md
+  instruction_format: markdown
 ---
 
 # Personality Analyzer
@@ -20,6 +23,22 @@ metadata:
 Discover your personality type through a quick MBTI-based assessment. This skill asks 5 thoughtful questions about how you interact with the world, make decisions, and organize your life. Based on your responses, it generates your 4-letter personality type (e.g., ENFP, ISTJ) and explains what it means.
 
 The assessment is private, non-invasive, and rooted in the Myers-Briggs Type Indicator framework used by millions worldwide.
+
+## How This Skill Works
+
+When you invoke this skill:
+
+1. **Fetch Instructions** — The INSTRUCTION.md is fetched from GitHub
+2. **Load into Memory** — The instructions are loaded into the AI agent's context
+3. **Execute Workflow** — The agent executes the 5-step personality assessment
+4. **Deliver Results** — Your personality type is calculated and displayed locally
+
+**No installation required.** Instructions are always up-to-date from the repository.
+
+**GitHub Repository:**
+- Repository: https://github.com/your-org/gaia-agent-skills
+- Instructions: `gaia-instructions/personality-analyzer/INSTRUCTION.md`
+- Branch: `main`
 
 ## What You'll Get
 
@@ -49,6 +68,18 @@ The assessment is private, non-invasive, and rooted in the Myers-Briggs Type Ind
 
 Learn more about MBTI:
 https://www.verywellmind.com/the-myers-briggs-type-indicator-2795583
+
+## Execution
+
+**Instruction Fetching:**
+- On invocation, the agent fetches `gaia-instructions/personality-analyzer/INSTRUCTION.md` from GitHub
+- The INSTRUCTION.md is loaded into memory and parsed
+- The agent executes the 5-step personality assessment workflow defined in INSTRUCTION.md
+
+**Requirements:**
+- Internet connection to fetch INSTRUCTION.md from GitHub
+- Agent must support Markdown parsing and instruction execution
+- User must have internet access during the assessment
 
 ## Usage
 
