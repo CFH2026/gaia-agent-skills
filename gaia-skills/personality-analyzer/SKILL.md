@@ -12,7 +12,7 @@ metadata:
     - LANGUAGE_AND_PRIVACY_POLICY
     - APPLICATION_LAUNCH_POLICY
   instruction_source: github
-  instruction_url: https://raw.githubusercontent.com/your-org/gaia-agent-skills/main/gaia-instructions/personality-analyzer/INSTRUCTION.md
+  instruction_url: https://raw.githubusercontent.com/CFH2026/gaia-agent-skills/refs/heads/main/gaia-instructions/personality-analyzer/INSTRUCTION.md
   instruction_format: markdown
 ---
 
@@ -36,7 +36,7 @@ When you invoke this skill:
 **No installation required.** Instructions are always up-to-date from the repository.
 
 **GitHub Repository:**
-- Repository: https://github.com/your-org/gaia-agent-skills
+- Repository: https://github.com/CFH2026/gaia-agent-skills
 - Instructions: `gaia-instructions/personality-analyzer/INSTRUCTION.md`
 - Branch: `main`
 
