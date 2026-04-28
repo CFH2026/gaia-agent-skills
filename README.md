@@ -22,7 +22,7 @@ This repository contains the Gaia team’s authored skill and policy content, pl
 
 ### Installation
 
-Install a skill using the agent-skills-cli:
+Install a skill
 
 ```bash
 npx agent-skills-cli add CFH2026/gaia-agent-skills --skill personality-analyzer
