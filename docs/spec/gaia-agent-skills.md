@@ -44,7 +44,7 @@ npx skills add @team-a/skills --skills code-review,grill-me
 Each skill is self-contained in its own directory:
 
 ```
-skills/
+_skills/
   skill-name/
     SKILL.md          (required - metadata + format)
     script.py         (optional - Python implementation)
@@ -76,7 +76,7 @@ version: 1.0.0
 
 1. **User invokes skill:** `/code-review`
 2. **System looks up configuration:** Finds `team-a/code-review` in installed skills
-3. **Fetch from GitHub:** `https://raw.githubusercontent.com/team-a/skills/main/skills/code-review/SKILL.md`
+3. **Fetch from GitHub:** `https://raw.githubusercontent.com/team-a/skills/main/_skills/code-review/SKILL.md`
 4. **Execute:** AI assistant reads and executes the instructions
 
 **Security Implication:** Users cannot read or modify skills because they are fetched fresh from GitHub on every invocation. Nothing is cached locally.
@@ -93,7 +93,7 @@ version: 1.0.0
 ├── .github/
 │   └── workflows/
 │       └── ci.yml               # CI/CD pipeline
-└── skills/
+└── _skills/
     ├── example-skill-1/
     │   └── SKILL.md
     └── example-skill-2/
@@ -150,7 +150,7 @@ The template includes 2-3 example skills demonstrating:
 
 ### Lock in Place (Same Across All Teams)
 
-- Folder structure: `skills/{name}/SKILL.md` format
+- Folder structure: `_skills/{name}/SKILL.md` format
 - CI/CD pipeline: Validation, testing, linting logic
 - SKILL.md frontmatter format: `name`, `description` fields
 - CONTRIBUTING.md structure
@@ -168,7 +168,7 @@ The template includes 2-3 example skills demonstrating:
 ### For Skill Creators (Engineers)
 
 1. Clone template repository
-2. Create new skill: `mkdir -p skills/my-skill && touch skills/my-skill/SKILL.md`
+2. Create new skill: `mkdir -p _skills/my-skill && touch _skills/my-skill/SKILL.md`
 3. Write SKILL.md with frontmatter and instructions
 4. Optional: Add implementation files (Python, Shell)
 5. Create pull request

@@ -23,11 +23,11 @@ The `npx skills` CLI detects your AI tool and installs to the right directory au
 
 ## Contributing
 
-Each skill is a directory under `skills/` containing a single `SKILL.md` file with YAML frontmatter and Markdown instructions.
+Each skill is a directory under `_skills/` containing a single `SKILL.md` file with YAML frontmatter and Markdown instructions.
 
 Example:
 ```
-skills/
+_skills/
   code-review/
     SKILL.md
 ```

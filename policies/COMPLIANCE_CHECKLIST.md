@@ -64,7 +64,7 @@ When reviewing a skill pull request:
 
 **Command to assist:**
 ```bash
-grep -r "[^a-zA-Z0-9\s\.\,\!\?\-\(\)\:\/\\\"\'\&]" skills/skill-name/ | grep -v ".git"
+grep -r "[^a-zA-Z0-9\s\.\,\!\?\-\(\)\:\/\\\"\'\&]" _skills/skill-name/ | grep -v ".git"
 ```
 
 ### Step 2: Personal Information Check
@@ -77,7 +77,7 @@ grep -r "[^a-zA-Z0-9\s\.\,\!\?\-\(\)\:\/\\\"\'\&]" skills/skill-name/ | grep -v 
 
 **Prohibited terms to search for:**
 ```bash
-grep -i -E "name|email|phone|address|ssn|password|credit|bank|health|medical|location" skills/skill-name/
+grep -i -E "name|email|phone|address|ssn|password|credit|bank|health|medical|location" _skills/skill-name/
 ```
 
 ### Step 3: Documentation Review
@@ -123,13 +123,13 @@ The following should be implemented in GitHub Actions:
 ### Language Detection
 ```bash
 # Check for common non-English patterns
-grep -E "[^\x00-\x7F]" skills/*/SKILL.md skills/*/README.md
+grep -E "[^\x00-\x7F]" _skills/*/SKILL.md _skills/*/README.md
 ```
 
 ### Personal Information Keywords
 ```bash
 # Flag suspicious keywords
-grep -i -E "ssn|password|credit_card|bank_account|phone_number" skills/*/*.py skills/*/*.sh
+grep -i -E "ssn|password|credit_card|bank_account|phone_number" _skills/*/*.py _skills/*/*.sh
 ```
 
 ### SKILL.md Validation
@@ -143,7 +143,7 @@ grep -i -E "ssn|password|credit_card|bank_account|phone_number" skills/*/*.py sk
 ### Documentation Check
 ```bash
 # Ensure README.md and SKILL.md exist for each skill
-for skill in skills/*/; do
+for skill in _skills/*/; do
   [ ! -f "$skill/SKILL.md" ] && echo "Missing SKILL.md in $skill"
   [ ! -f "$skill/README.md" ] && echo "Missing README.md in $skill"
 done

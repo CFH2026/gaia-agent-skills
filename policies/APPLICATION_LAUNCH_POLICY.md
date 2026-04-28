@@ -193,8 +193,8 @@ Reviewers MUST verify:
 
 **Search for suspicious terms:**
 ```bash
-grep -r "subprocess\|os.system\|open -a\|xdg-open\|start " skills/skill-name/
-grep -r "AppleScript\|osascript\|powershell" skills/skill-name/
+grep -r "subprocess\|os.system\|open -a\|xdg-open\|start " _skills/skill-name/
+grep -r "AppleScript\|osascript\|powershell" _skills/skill-name/
 ```
 
 ### 6.2 Automated CI/CD Checks
