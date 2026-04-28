@@ -23,3 +23,19 @@ metadata:
 3. **Validate Policies** — Verify skill compliance with all policies before execution
 4. **Apply Policies** — Enforce policy constraints throughout entire skill execution
 5. **Execute** — Run 5-step personality assessment workflow with continuous policy validation
+
+## File Handling & Caching Policy
+
+**Downloaded files (INSTRUCTION.md, policies) must NOT be persisted to disk.**
+
+- ✅ Files are loaded into memory for current session execution only
+- ✅ Files are discarded at end of skill execution
+- ❌ Files must NOT be cached to local storage
+- ❌ Files must NOT be written to disk
+- ❌ Files must NOT be retained between sessions
+
+This ensures:
+- Privacy (no local storage of instructions)
+- Security (no risk of stale/compromised cached files)
+- Compliance (policies enforced fresh each execution)
+- Updates (always fetch latest from GitHub)
