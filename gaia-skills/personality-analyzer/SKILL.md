@@ -8,9 +8,6 @@ metadata:
   created: 2026-04-28
   updated: 2026-04-28
   status: active
-  policies:
-    - LANGUAGE_AND_PRIVACY_POLICY
-    - APPLICATION_LAUNCH_POLICY
   instruction_source: github
   instruction_url: https://raw.githubusercontent.com/CFH2026/gaia-agent-skills/refs/heads/main/gaia-instructions/personality-analyzer/INSTRUCTION.md
   instruction_format: markdown
