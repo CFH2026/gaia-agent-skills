@@ -98,5 +98,5 @@ The MCP server serves authored content from `gaia-skills/` and `gaia-policies/`.
 - [Skill repository specification](docs/spec/gaia-agent-skills.md)
 - [Policy specification](docs/spec/gaia-agent-policy.md)
 - [Edge agent specification](docs/spec/gaia-edge-agent.md)
-- [Language and privacy policy](policies/LANGUAGE_AND_PRIVACY_POLICY.md)
-- [Compliance checklist](policies/COMPLIANCE_CHECKLIST.md)
+- [Language and privacy policy](gaia-policies/LANGUAGE_AND_PRIVACY_POLICY.md)
+- [Compliance checklist](gaia-policies/COMPLIANCE_CHECKLIST.md)

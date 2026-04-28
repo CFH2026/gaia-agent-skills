@@ -17,7 +17,6 @@
 - `gaia-policies/<policy-name>/POLICY.md` for engineer-authored policies served through MCP
 - `mcp/gaia-mcp/` for the MCP implementation workspace
 - `docs/spec/` for repository and skill specifications
-- `policies/` for language, privacy, and launch constraints
 
 ## Skill Authoring
 
