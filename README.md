@@ -7,7 +7,6 @@ This repository contains the Gaia team’s authored skill and policy content, pl
 - `gaia-skills/` for engineer-built skills intended for release to other users and local laptops
 - `gaia-instructions/` for AI agent execution instructions that accompany skills
 - `gaia-policies/` for engineer-authored policies and rules that skills can reference
-- `mcp/gaia-mcp/` for the MCP server implementation that serves skills and policies
 
 ## What This Repo Is
 
@@ -16,7 +15,6 @@ This repository contains the Gaia team’s authored skill and policy content, pl
 - Release-oriented skill area under `gaia-skills/`
 - AI execution instructions area under `gaia-instructions/` (fetched by agents during skill execution)
 - Policy source area under `gaia-policies/`
-- MCP implementation workspace under `mcp/gaia-mcp/`
 
 ## Getting Started
 
