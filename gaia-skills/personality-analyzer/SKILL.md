@@ -12,17 +12,8 @@ metadata:
   instruction_url: https://raw.githubusercontent.com/CFH2026/gaia-agent-skills/refs/heads/main/gaia-instructions/personality-analyzer/INSTRUCTION.md
   instruction_format: markdown
 ---
-
-# Personality Analyzer
-
-Discover your MBTI personality type through a 5-question assessment. Private, non-invasive, and instantly reveals your 4-letter personality type.
-
 ## Execution Steps
 
 1. **Fetch Instruction** — Load INSTRUCTION.md from GitHub
 2. **Load to Memory** — Parse instructions into agent context
 3. **Execute** — Run 5-step personality assessment workflow
-
-## Reference
-
-MBTI Framework: https://www.verywellmind.com/the-myers-briggs-type-indicator-2795583
