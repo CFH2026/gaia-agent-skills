@@ -18,34 +18,37 @@ This repository contains the Gaia team’s authored skill and policy content, pl
 - Policy source area under `gaia-policies/`
 - MCP implementation workspace under `mcp/gaia-mcp/`
 
-## Instruction Structure
+## Getting Started
 
-Instructions are stored in `gaia-instructions/` and define how AI agents execute skills:
+### Installation
 
-```text
-gaia-instructions/
-  skill-name/
-    INSTRUCTION.md
+Install a skill using the agent-skills-cli:
+
+```bash
+npx agent-skills-cli add CFH2026/gaia-agent-skills --skill personality-analyzer
 ```
 
-`INSTRUCTION.md` contains:
-- **Your Role** — Agent perspective and responsibilities
-- **Execution Steps** — Step-by-step workflow logic
-- **Constraints & Boundaries** — Data access rules and limits
-- **Error Handling** — How to handle failure scenarios
-- **Audit & Logging** — What to record and track
+This will:
+- Download the SKILL.md from `gaia-skills/personality-analyzer/`
+- Register the skill in `.claude/skills/<skill-name>/`
+- Make the skill available in your agent workspace
 
-### How Instructions Work
+### Supported Agents
 
-1. SKILL.md (installed locally) contains the `instruction_url`
-2. When skill is invoked, the agent fetches INSTRUCTION.md from GitHub
-3. Instructions are loaded into agent memory
-4. Agent executes the skill following the instructions
-5. Policies are enforced throughout execution
+Currently supported:
+- ✅ **Claude Code** — Use `/personality-analyzer` to invoke
+- ⏳ **Codex** — Support coming soon
 
-This design ensures:
-- ✅ Instructions are always up-to-date from source
-- ✅ Agents follow consistent execution patterns
-- ✅ Policies are enforced at runtime
-- ✅ No personal data is stored locally
+### Running a Skill
 
+Once installed, invoke the skill through Claude Code:
+
+```bash
+/personality-analyzer
+```
+
+The skill will:
+1. Fetch the INSTRUCTION.md from GitHub
+2. Load instructions and policies into memory
+3. Validate policy compliance
+4. Execute the skill workflow
