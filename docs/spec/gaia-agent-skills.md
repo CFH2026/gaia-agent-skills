@@ -1,253 +1,200 @@
-# gaia-agent-skills Specification
+# Gaia Agent Skills Repository Initial Design Specification
 
 ## Overview
 
-`gaia-agent-skills` is a template repository for teams within the company to create, manage, and distribute shareable AI assistant skills. It enables teams to maintain their own skill repositories while providing a standardized format and distribution mechanism.
+`gaia-agent-skills` is the Gaia team repository for authoring, reviewing, and releasing shareable AI assistant skills. The repository also holds policy source content and the MCP server workspace that serves skills and policies to consumers. Approved skills are distributed to individual local laptops for use with the Gaia edge agent workflow.
 
-## Goals
+## Design Goals
 
-1. **Team Autonomy:** Each team can clone and manage their own skills repository
-2. **Ease of Use:** Both technical and non-technical users can install and use skills
-3. **Security:** Users cannot read or edit skills locally, preventing unauthorized modifications
-4. **Quality:** CI/CD pipeline ensures skill quality before distribution
-5. **Simplicity:** Minimal setup required for teams to get started
+1. **Single source of truth:** Keep all skill source files and repository guidance in one place
+2. **Consistent structure:** Use a predictable directory layout and README pattern across skills and policies
+3. **Local-laptop release:** Make approved skills available on individual laptops through the Gaia release process
+4. **Policy compliance:** Ensure skills stay aligned with language, privacy, and security rules
+5. **Simple authoring:** Make it easy for engineers to create and review skills without extra framework overhead
 
-## Architecture
+## Repository Scope
 
-### Distribution Model
+This repository contains:
 
-- **Repository Type:** Decentralized - Each team owns their own GitHub repository
-- **Access Control:** Managed via GitHub permissions (private, internal, or public repos)
-- **Installation Method:** Command-line via `npx` utility
-- **Fetching Strategy:** On-demand from GitHub (no local caching of skill content)
+- Repo-workflow skill source files under `_skills/<skill-name>/`
+- Release-oriented skill source files under `gaia-skills/<skill-name>/`
+- Policy source files under `gaia-policies/<policy-name>/`
+- MCP server workspace under `mcp/gaia-mcp/`
+- Repository documentation, including this spec and the README
+- Policy and compliance guidance for skills and policies
+- Optional local documentation for individual skills and policies
 
-### Installation Model
+This repository does not define:
 
-**Command:**
-```bash
-npx skills add @team-a/skills --skills code-review,grill-me
-```
+- A public marketplace or external install catalog
+- A generic skill registry service
+- The transport mechanism used to release skills to laptops
+- Any application-launch behavior or operating-system automation
 
-**What Gets Stored Locally:**
-```json
-{
-  "team": "team-a",
-  "repo": "https://github.com/team-a/skills",
-  "installedSkills": ["code-review", "grill-me"]
-}
-```
+## Repository Model
 
-**Key Constraint:** Only metadata and configuration are stored locally. No skill files are cached.
+### Skill Trees
 
-### Skill Structure
+This repository uses two skill trees with different purposes:
+
+| Tree | Purpose |
+|------|---------|
+| `_skills/` | Skills used by agents while working in this repository |
+| `gaia-skills/` | Engineer-built skills intended for release to other users |
 
 Each skill is self-contained in its own directory:
 
-```
+```text
 _skills/
   skill-name/
-    SKILL.md          (required - metadata + format)
-    script.py         (optional - Python implementation)
-    tool.sh           (optional - Shell script implementation)
-    README.md         (optional - local documentation)
+    SKILL.md
+    README.md
+
+gaia-skills/
+  skill-name/
+    SKILL.md
+    README.md
 ```
 
-### SKILL.md Format
+### File Responsibilities
 
-Every skill must have a `SKILL.md` file with YAML frontmatter and Markdown content:
+| File | Required | Purpose |
+|------|----------|---------|
+| `SKILL.md` | Yes | Skill metadata and instructions for the assistant |
+| `README.md` | No | Optional local context, examples, or usage notes |
 
-```markdown
----
-name: code-review
-description: Review code changes for correctness, style, and potential issues
-version: 1.0.0
----
+### Naming Rules
 
-[Markdown instructions for the AI assistant...]
-```
+- Skill directories use kebab-case
+- Skill names in `SKILL.md` use kebab-case
+- README content must be English-only
+- Skill content must follow repository privacy and language policies
 
-**Frontmatter Fields:**
-- `name` (required): Skill identifier, kebab-case
-- `description` (required): One-line description of what the skill does
-- `version` (optional): Semantic version
-- Additional metadata as needed
+## README Standard Pattern
 
-### Execution Flow
+The repository README should follow a short, stable structure:
 
-1. **User invokes skill:** `/code-review`
-2. **System looks up configuration:** Finds `team-a/code-review` in installed skills
-3. **Fetch from GitHub:** `https://raw.githubusercontent.com/team-a/skills/main/_skills/code-review/SKILL.md`
-4. **Execute:** AI assistant reads and executes the instructions
+1. Title
+2. Short repository purpose statement
+3. What this repo is
+4. Skill structure
+5. Create a new skill
+6. Submit a skill
+7. How skills reach end users
+8. Reference material
 
-**Security Implication:** Users cannot read or modify skills because they are fetched fresh from GitHub on every invocation. Nothing is cached locally.
+The README should stay focused on repository purpose and authoring guidance. It should not include public installation commands or a long skills catalog unless the team explicitly decides to add one.
 
-## Template Repository Contents
+## Policy Model
 
-### Essential Files
+Policies live under `gaia-policies/` and are served through MCP.
 
-```
-.
-├── README.md                      # How to use template, create skills, setup
-├── LICENSE                        # MIT or company license
-├── CONTRIBUTING.md                # Guidelines for creating skills
-├── .github/
-│   └── workflows/
-│       └── ci.yml               # CI/CD pipeline
-└── _skills/
-    ├── example-skill-1/
-    │   └── SKILL.md
-    └── example-skill-2/
-        └── SKILL.md
-```
+### Policy Trees
 
-### README.md
+| Tree | Purpose |
+|------|---------|
+| `gaia-policies/` | Engineer-authored policies and rules that skills can reference |
+| `mcp/gaia-mcp/` | MCP server code and derived manifests that expose policies |
 
-Should include:
-- What this repository is
-- How to create a new skill
-- How to submit a skill (PR process)
-- How users install skills from this repository
-- Links to the template specification
+### Policy File Responsibility
 
-### CONTRIBUTING.md
+| File | Required | Purpose |
+|------|----------|---------|
+| `POLICY.md` | Yes | Policy metadata and rules for MCP serving |
+| `README.md` | No | Optional local context, examples, or usage notes |
 
-Should document:
-- Skill creation guidelines
-- SKILL.md format requirements
-- Code quality standards
-- PR review process
-- Testing requirements
+## Skill Authoring Model
 
-### CI/CD Pipeline (.github/workflows/ci.yml)
+### Skill Creation
 
-Runs on every pull request:
+To create a new skill:
 
-1. **Validation**
-   - Check SKILL.md files exist in all skill directories
-   - Validate YAML frontmatter format
-   - Verify required fields (`name`, `description`)
+1. Create a new directory under `_skills/`
+2. Or create a new directory under `gaia-skills/` if the skill is intended for release
+3. Add a `SKILL.md` file with YAML frontmatter
+4. Write the assistant instructions in Markdown
+5. Add an optional `README.md` if the skill needs supporting notes or examples
 
-2. **Testing**
-   - Run tests for Python/Shell implementation files
-   - Execute linting on code files
+### Skill Validation
 
-3. **Linting**
-   - Lint Markdown files
-   - Check code style for Python/Shell scripts
+Before release, each skill must be checked for:
 
-4. **Documentation**
-   - Verify skill descriptions are meaningful
-   - Check for required documentation
+- Valid Markdown formatting
+- Required `SKILL.md` frontmatter fields
+- English-only user-facing text
+- Privacy compliance
+- Alignment with the repo’s policy documents
 
-### Example Skills
+### Skill Lifecycle
 
-The template includes 2-3 example skills demonstrating:
-- Markdown-only skill format
-- Skill with Python implementation
-- Skill with Shell script implementation
+1. Author adds or updates the skill in the correct tree
+2. Reviewers check the skill and related documentation
+3. Approved changes are merged
+4. The release process publishes `gaia-skills/` content to local laptops
+5. End users invoke the released skill through the Gaia edge agent workflow
 
-## Team Customization
+## Release Model
 
-### Lock in Place (Same Across All Teams)
+Approved skills are released from this repository to individual local laptops. The repository is the source of the skill definition, while the release process is responsible for making the skill available to end users.
 
-- Folder structure: `_skills/{name}/SKILL.md` format
-- CI/CD pipeline: Validation, testing, linting logic
-- SKILL.md frontmatter format: `name`, `description` fields
-- CONTRIBUTING.md structure
+Only skills in `gaia-skills/` are considered release-oriented. Skills in `_skills/` are for repository-local agent work and do not imply end-user release.
 
-### Customize Per Team
+## MCP Model
 
-- Team name and description in README
-- Example skills (replace with team-specific examples)
-- Additional frontmatter fields specific to team
-- Team-specific CI/CD checks (additional linters, test frameworks)
-- LICENSE file (if using company-specific license)
+The MCP server in `mcp/gaia-mcp/` serves authored content from `gaia-skills/` and `gaia-policies/`.
 
-## Workflow
+### MCP Responsibilities
 
-### For Skill Creators (Engineers)
+- Resolve skill content from `gaia-skills/`
+- Resolve policy content from `gaia-policies/`
+- Serve derived manifests for skill-policy mappings
+- Keep implementation code separate from source content
 
-1. Clone template repository
-2. Create new skill: `mkdir -p _skills/my-skill && touch _skills/my-skill/SKILL.md`
-3. Write SKILL.md with frontmatter and instructions
-4. Optional: Add implementation files (Python, Shell)
-5. Create pull request
-6. CI/CD validates skill
-7. Team review and approve
-8. Merge to main branch
+### MCP Non-Goals
 
-### For Skill Installation (Engineer Helping End User)
+- MCP does not own skill or policy source files
+- MCP does not replace the review process for authored content
+- MCP does not define end-user release transport
 
-1. User requests to install skills
-2. Engineer runs: `npx skills add @team-a/skills --skills skill-1,skill-2`
-3. System registers team repo and skill names locally
-4. End user can now invoke installed skills
+### Release Principles
 
-### For Skill Execution (End User)
+- Skills should be released only after review and approval
+- The repo should not expose a public install flow in the README
+- The exact delivery mechanism may evolve without changing the repository contract
+- End-user guidance belongs in the edge-agent documentation, not in the skill source repository
 
-1. Invoke skill in Codex/Claude Code: `/skill-name`
-2. System fetches latest SKILL.md from GitHub
-3. AI assistant executes instructions
-4. No local skill files are read or stored
+## Policy and Compliance
 
-## Technical Specifications
+All skills in this repository must comply with the repository’s policy documents, including:
 
-### Supported Skill Types
+- English-only user-facing content
+- No requests for personal or identifying information
+- No automatic application launching
+- Any additional repo policy or launch constraint
 
-1. **Markdown-only Skills**
-   - Pure instructions for AI assistants
-   - No implementation code
+Skill authors and reviewers should treat the policy documents as part of the definition of “done.”
 
-2. **Python Skills**
-   - SKILL.md for instructions
-   - `script.py` or multiple Python files
-   - Optional requirements.txt
+## Documentation Requirements
 
-3. **CLI/Shell Skills**
-   - SKILL.md for instructions
-   - `.sh` shell scripts or other executables
+The repository should keep these documents current:
 
-### Version Management
+- `README.md` for the high-level repo overview
+- `docs/spec/gaia-agent-skills.md` for the repository design contract
+- `docs/spec/gaia-agent-policy.md` for policy content structure and governance
+- `policies/` for language, privacy, and launch constraints
+- Individual skill `README.md` files only when they add value for that skill
 
-- Each skill can have its own version in SKILL.md
-- Team repository uses Git tags for major releases
-- Users always get the latest version (fetched from main branch)
+## Non-Goals
 
-### Naming Conventions
+This repository initial design does not attempt to:
 
-- Skill directories: kebab-case (e.g., `code-review`)
-- Skill names in frontmatter: kebab-case
-- GitHub repository: kebab-case (e.g., `team-a-skills`)
-- npm package: lowercase, hyphens (e.g., `@company/team-a-skills`)
+- Define a runtime policy engine
+- Define a public skill store
+- Define the detailed release transport to laptops
+- Define user-specific configuration storage
 
-## Security & Access Control
+## Open Questions
 
-### Preventing Local Reading/Editing
-
-- **No local skill files:** Only configuration stored locally
-- **On-demand fetching:** SKILL.md fetched from GitHub on every invocation
-- **No caching:** Fresh copy retrieved each time, preventing stale/modified versions
-- **GitHub permissions:** Team controls who can view/edit skills via repository access
-
-### Access Levels
-
-- **Read:** User can invoke installed skills (cannot see source)
-- **Edit:** Engineers in the team can create/modify skills via PR process
-- **Admin:** Team leads manage repository settings and access
-
-## Future Extensibility
-
-This specification is designed to support future enhancements:
-
-- **Versioning:** Add version pinning to installed skills (v1.0.0 vs latest)
-- **Skill Registry:** Central catalog of all available skills across teams
-- **Compiled Skills:** Option to compile/encrypt skills before distribution via npm
-- **Offline Mode:** Optional local caching with periodic sync daemon
-- **Dependency Management:** Skills depending on other skills
-
-## Implementation Notes
-
-- npx utility handles GitHub URL parsing and integration
-- Codex/Claude Code system responsible for fetching and executing skills
-- GitHub Actions provides CI/CD environment
-- No external service dependencies required beyond GitHub
+- What exact release mechanism will publish skills to local laptops?
+- Which team owns the release pipeline and operational support?
+- Should the repository eventually maintain a generated skill index, or keep the README minimal?

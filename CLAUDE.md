@@ -1,12 +1,5 @@
-# Repository Instructions
+# Claude Code Instructions
 
-## Source Of Truth
-
-- Read `.codex/config.json` before taking action.
-- Use that file as the canonical runtime config for this repo.
-- Current settings:
-  - `model`: `gpt-5`
-  - `approval_mode`: `suggest`
 
 ## Operating Rules
 
@@ -20,37 +13,35 @@
 
 - `README.md` for project overview
 - `_skills/<skill-name>/SKILL.md` for skills used while working in this repo
-- `gaia-skills/<skill-name>/SKILL.md` for engineer-built skills intended for release to other users
+- `gaia-skills/<skill-name>/SKILL.md` for engineer-built skills intended for release
 - `gaia-policies/<policy-name>/POLICY.md` for engineer-authored policies served through MCP
 - `mcp/gaia-mcp/` for the MCP implementation workspace
 - `docs/spec/` for repository and skill specifications
 - `policies/` for language, privacy, and launch constraints
 
-
 ## Skill Authoring
 
-- Put repo-workflow skills in their own directory under `_skills/`.
-- Put release-oriented skills in their own directory under `gaia-skills/`.
-- Put policies in their own directory under `gaia-policies/`.
-- Put MCP implementation code in `mcp/gaia-mcp/`.
-- Keep primary instructions in `SKILL.md`.
-- Follow the existing markdown and metadata patterns in the repo.
-- Keep examples minimal and consistent with repo policies.
+- Put repo-workflow skills in `_skills/<skill-name>/`
+- Put release-oriented skills in `gaia-skills/<skill-name>/`
+- Put policies in `gaia-policies/<policy-name>/`
+- Put MCP implementation code in `mcp/gaia-mcp/`
+- Keep primary instructions in `SKILL.md`
+- Follow existing markdown and metadata patterns
+- Keep examples minimal and consistent with repo policies
 
 ## Validation
 
-- Verify edited markdown is well formed.
-- Verify JSON remains valid.
-- Confirm any skill change still matches the repo policies and docs.
+- Verify edited markdown is well formed
+- Verify JSON remains valid
+- Confirm any skill change still matches repo policies and docs
 
 ## Git Best Practices
 
-
-### Git Commits
+### Commits
 
 - Use Conventional Commits: `type(scope): description`
 - Allowed types: `feat`, `fix`, `refactor`, `perf`, `test`, `docs`, `chore`
-- Do not add AI attribution such as `Co-Authored-By: Claude` or `Generated with Claude Code`
+- Do not add AI attribution (no `Co-Authored-By`, no `Generated with Claude`)
 - Keep each commit focused on one logical change
 
 ### Branch Strategy
@@ -58,7 +49,7 @@
 - Use `feature/UP-123-short-description`, `bugfix/UP-456-short-description`, or `hotfix/UP-789-short-description`
 - Branch `develop` for feature work and PRs
 - Use `master` for stable, production-ready code
-- Do not attempt to deploy to UT, UAT, or Production from engineering repos
+- Do not attempt to deploy from engineering repos
 
 ### Before `git push`
 
