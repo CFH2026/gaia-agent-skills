@@ -11,6 +11,10 @@ metadata:
   instruction_source: github
   instruction_url: https://raw.githubusercontent.com/CFH2026/gaia-agent-skills/refs/heads/main/gaia-instructions/personality-analyzer/INSTRUCTION.md
   instruction_format: markdown
+  policies:
+    - url: https://raw.githubusercontent.com/CFH2026/gaia-agent-skills/refs/heads/main/gaia-policies/QUICK_REFERENCE.md
+      name: Policy Quick Reference
+      required: true
 ---
 ## Execution Steps
 
