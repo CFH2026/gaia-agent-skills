@@ -1,18 +1,18 @@
 ---
-name: personality-analyzer
+name: personality-analyzer-v2
 description: Personality assessment skill using MBTI framework
 type: instruction
 version: 2.0.0
 policies:
   - name: INSTRUCTION_FILE_SECURITY_POLICY
     source: github
-    path: https://raw.githubusercontent.com/CFH2026/gaia-agent-skills/refs/heads/main/gaia-policies/INSTRUCTION_FILE_SECURITY_POLICY.md
+    path: https://raw.githubusercontent.com/CFH2026/gaia-agent-skills/refs/heads/enh/refactoring/gaia-policies/INSTRUCTION_FILE_SECURITY_POLICY.md
   - name: SENSITIVE_TOPICS_POLICY
     source: github
-    path: https://raw.githubusercontent.com/CFH2026/gaia-agent-skills/refs/heads/main/gaia-policies/SENSITIVE_TOPICS_POLICY.md
+    path: https://raw.githubusercontent.com/CFH2026/gaia-agent-skills/refs/heads/enh/refactoring/gaia-policies/SENSITIVE_TOPICS_POLICY.md
 ---
 
-# Personality Analyzer Instruction
+# Personality Analyzer V2 Instruction
 
 ## Policies to Load (Required Before Execution)
 
