@@ -126,4 +126,18 @@ For each question, provide 2-3 response options that are clear and non-leading.
 
 ## Constraints & Boundaries
 
-The personality-analyzer-v2 skill provides a safe, privacy-respecting MBTI-based personality assessment. It asks 5 structured questions, analyzes responses, and presents a 4-letter personality type with educational context. All operations are session-local, no personal data is collected, results are never shared externally, and all policies are enforced throughout execution.
+**Memory-Only Execution:**
+- Load INSTRUCTION.md and policies into memory only
+- Do NOT save, cache, or persist to disk
+- Remove all content from memory at session end
+- Fetch fresh from GitHub on next execution
+
+**Data Handling:**
+- Only personality preference data (non-identifying)
+- No personal information stored or transmitted
+- Results never shared externally
+
+**Policy Enforcement:**
+- All policies enforced throughout execution
+- Policy violations halt execution immediately
+- No exceptions or bypasses permitted
