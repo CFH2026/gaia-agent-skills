@@ -9,7 +9,7 @@ metadata:
   updated: 2026-05-01
   status: active
   instruction_source: github
-  instruction_url: https://raw.githubusercontent.com/CFH2026/gaia-agent-skills/refs/heads/main/gaia-instructions/personality-analyzer-v2
+  instruction_url: https://raw.githubusercontent.com/CFH2026/gaia-agent-skills/refs/heads/enh/refactoring/gaia-instructions/personality-analyzer-v2
   instruction_format: markdown
   fetch_mode: folder
   entry_point: INSTRUCTION.md
