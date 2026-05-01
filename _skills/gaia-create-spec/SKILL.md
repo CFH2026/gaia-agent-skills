@@ -142,6 +142,7 @@ Using the template at `spec-template.md` (read it now), populate each section wi
 **Mermaid diagram is mandatory.** If the writer has not provided architecture details sufficient to draw a diagram:
 - Ask: 「請描述系統元件之間的主要資料流或呼叫關係，我會幫你繪製架構圖。」
 - Generate a best-effort Mermaid diagram based on the information gathered, and note it should be reviewed by the Tech Lead.
+- **Color rule:** Do NOT apply any colors to nodes, edges, or other diagram elements. Use default styling only.
 
 **Scope guard — apply continuously while drafting:**
 - For every design decision, component, API, or data field introduced, ask: **"Does this map to a requirement, user story, or NFR in the PRD?"**
