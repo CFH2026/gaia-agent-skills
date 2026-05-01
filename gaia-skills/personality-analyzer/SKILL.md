@@ -1,41 +1,20 @@
 ---
 name: personality-analyzer
-description: MBTI-based personality assessment that asks 5 questions and reveals your personality type
+description: MBTI personality assessment
 license: CC-BY-4.0
 metadata:
   author: Gaia Team
-  version: 1.0.0
-  created: 2026-04-28
-  updated: 2026-04-28
+  version: 2.0.0
+  created: 2026-05-01
+  updated: 2026-05-01
   status: active
   instruction_source: github
-  instruction_url: https://raw.githubusercontent.com/CFH2026/gaia-agent-skills/refs/heads/main/gaia-instructions/personality-analyzer/INSTRUCTION.md
+  instruction_url: https://raw.githubusercontent.com/CFH2026/gaia-agent-skills/refs/heads/enh/refactoring/gaia-instructions/personality-analyzer
   instruction_format: markdown
-  policies:
-    - url: https://raw.githubusercontent.com/CFH2026/gaia-agent-skills/refs/heads/main/gaia-policies/QUICK_REFERENCE.md
-      name: Policy Quick Reference
-      required: true
+  fetch_mode: folder
+  entry_point: INSTRUCTION.md
 ---
-## Execution Steps
 
-1. **Fetch Policies & Instructions** — Load policies from QUICK_REFERENCE.md and INSTRUCTION.md from GitHub
-2. **Load to Memory** — Parse policies and instructions into agent context
-3. **Validate Policies** — Verify skill compliance with all policies before execution
-4. **Apply Policies** — Enforce policy constraints throughout entire skill execution
-5. **Execute** — Run 5-step personality assessment workflow with continuous policy validation
-
-## File Handling & Caching Policy
-
-**Downloaded files (INSTRUCTION.md, policies) must NOT be persisted to disk.**
-
-- ✅ Files are loaded into memory for current session execution only
-- ✅ Files are discarded at end of skill execution
-- ❌ Files must NOT be cached to local storage
-- ❌ Files must NOT be written to disk
-- ❌ Files must NOT be retained between sessions
-
-This ensures:
-- Privacy (no local storage of instructions)
-- Security (no risk of stale/compromised cached files)
-- Compliance (policies enforced fresh each execution)
-- Updates (always fetch latest from GitHub)
+1. Fetch entire folder from `instruction_url` into memory
+2. Load and execute `entry_point` (INSTRUCTION.md) with all embedded policies
+3. Discard all folder content from memory at session end — do not save or cache
